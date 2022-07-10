@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal die
+
 var gravity = 1000
 var velocity = Vector2.ZERO
 var max_horizontal_speed =  140
@@ -64,3 +66,6 @@ func update_animation():
 		$AnimatedSprite.play("run")
 	else:
 		$AnimatedSprite.play("idle")
+
+func _on_HazardArea_area_entered(area):
+	emit_signal("die")

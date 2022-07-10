@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/character_0000.png" type="Texture" id=2]
 [ext_resource path="res://assets/player/character_0001.png" type="Texture" id=3]
 [ext_resource path="res://scenes/PlayerCamera.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4, 3.5 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -33,6 +39,22 @@ script = ExtResource( 1 )
 wait_time = 0.15
 one_shot = true
 
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2( 0, -9 )
+shape = SubResource( 3 )
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 262144
+collision_mask = 262144
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2( 0, -3.5 )
+shape = SubResource( 4 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -12 )
 frames = SubResource( 2 )
@@ -48,3 +70,5 @@ smoothing_enabled = true
 smoothing_speed = 15.0
 script = ExtResource( 4 )
 background_color = Color( 0.87451, 0.964706, 0.960784, 1 )
+
+[connection signal="area_entered" from="HazardArea" to="." method="_on_HazardArea_area_entered"]
