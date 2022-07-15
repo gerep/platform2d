@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="platform2d"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/BaseLevel.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -68,6 +68,7 @@ jump={
 
 [layer_names]
 
+2d_physics/layer_18="ENEMY_GOAL"
 2d_physics/layer_19="HAZARD"
 2d_physics/layer_20="PICKUP"
 

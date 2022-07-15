@@ -67,5 +67,5 @@ func update_animation():
 	else:
 		$AnimatedSprite.play("idle")
 
-func _on_HazardArea_area_entered(area):
+func _on_HazardArea_area_entered(_area):
 	emit_signal("die")
